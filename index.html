@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Mario StreetWear</title>
     <style>
+        /* Reset básico */
         * {
             margin: 0;
             padding: 0;
@@ -51,18 +52,27 @@
             text-align: center;
             padding: 100px 20px;
             background-color: #f4f4f4;
+            background-image: url('fondo.jpg'); /* Agrega esta línea */
+            background-size: cover; /* Ajusta la imagen al tamaño del contenedor */
+            background-position: center; /* Centra la imagen */
+            background-repeat: no-repeat; /* Evita repetir la imagen */
+            position: relative; /* Necesario para posicionar el contenido encima */
         }
 
         .hero h2 {
             font-size: 48px;
             margin-bottom: 20px;
             color: #000;
+            z-index: 1; /* Asegura que el texto esté encima de la imagen */
+            position: relative;
         }
 
         .hero p {
             font-size: 20px;
             max-width: 600px;
             margin: 0 auto 30px;
+            z-index: 1; /* Asegura que el texto esté encima de la imagen */
+            position: relative;
         }
 
         .btn-shop {
@@ -91,6 +101,7 @@
 </head>
 <body>
 
+    <!-- HEADER CON NAVEGACIÓN -->
     <header>
         <h1>Mario StreetWear</h1>
         <div class="nav-buttons">
@@ -99,18 +110,21 @@
         </div>
     </header>
 
+    <!-- SECCIÓN PRINCIPAL -->
     <section class="hero">
         <h2>Bienvenido a Mario StreetWear</h2>
-        <p>Encuentra lo último en moda urbana y accesorios exclusivos. Ropa de calidad con estilo único.</p>
+        <p>Encuentra lo último en moda urbana y accesorios exclusivos.<br>Ropa de calidad con estilo único.</p>
         <a href="#" class="btn-shop">Ver Colección</a>
     </section>
 
+    <!-- FOOTER -->
     <footer>
         &copy; 2025 Mario StreetWear. Todos los derechos reservados.
     </footer>
 
-    
+    <!-- SCRIPT JS -->
     <script>
+        // Puedes usar este script para animaciones o interactividad futura
         document.addEventListener('DOMContentLoaded', function () {
             console.log("Bienvenido a Mario StreetWear");
         });
