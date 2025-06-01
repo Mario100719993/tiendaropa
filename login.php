@@ -10,6 +10,12 @@ $database = "MarioStreetwear";
 
 $conn = new mysqli($host, $user, $password, $database);
 
+if ($rol === 'admin') {
+    header("Location: dashboardadministrador.php");
+} else {
+    header("Location: dashboard.php");
+}
+exit();
 
 if ($conn->connect_error) {
     die("Conexión fallida: " . $conn->connect_error);
