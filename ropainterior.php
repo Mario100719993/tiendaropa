@@ -91,7 +91,7 @@
 </head>
 <body>
 
-    <!-- HEADER -->
+    
     <header>
         <div class="nav-categorias">
             <a href="camisetas.php">Camisetas</a>
@@ -105,15 +105,15 @@
         </div>
     </header>
 
-    <!-- TÍTULO -->
+    
     <h1 class="titulo">Ropa Interior</h1>
 
-    <!-- CONTENIDO -->
+    
     <div class="container">
         <p>Ropa interior cómoda, moderna y de calidad. ¡Encuentra lo que buscas!</p>
     </div>
 
-    <!-- FOOTER -->
+    
     <footer>
         &copy; 2025 Mario StreetWear. Todos los derechos reservados.
     </footer>
