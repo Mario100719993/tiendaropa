@@ -74,32 +74,32 @@ $usuario = $_SESSION['usuario'];
         .container {
             max-width: 600px;
             margin: 80px auto;
-            background: white;
+            background-image: url('fondo.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            background-repeat: no-repeat; 
             padding: 40px;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
+            position: relative;
+            color: white;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6); 
+            padding: 30px;
+            border-radius: 8px;
         }
 
         h2 {
-            color: #000;
+            color: #fff;
         }
 
         p {
             font-size: 18px;
             margin-bottom: 20px;
-        }
-
-        .imagen-container {
-            text-align: center;
-            margin-top: 40px;
-        }
-
-        .imagen-container img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            color: #eee;
         }
     </style>
 </head>
@@ -123,13 +123,10 @@ $usuario = $_SESSION['usuario'];
 
     
     <div class="container">
-        <h2>¡Bienvenido, <?php echo htmlspecialchars($usuario); ?>!</h2>
-        <p>Selecciona una categoría arriba para empezar a comprar.</p>
-    </div>
-
-    
-    <div class="imagen-container">
-        <img src="fondo.jpg" alt="Fondo de la tienda">
+        <div class="overlay">
+            <h2>¡Bienvenido, <?php echo htmlspecialchars($usuario); ?>!</h2>
+            <p>Selecciona una categoría arriba para empezar a comprar.</p>
+        </div>
     </div>
 
 </body>
