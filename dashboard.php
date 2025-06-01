@@ -128,10 +128,10 @@ $usuario = $_SESSION['usuario'];
     <header>
         
         <div class="nav-categorias">
-            <a href="#">Camisetas</a>
-            <a href="#">Pantalones</a>
-            <a href="#">Sudaderas</a>
-            <a href="#">Ropa Interior</a>
+            <a href="camisetas.php">Camisetas</a>
+            <a href="pantalones.php">Pantalones</a>
+            <a href="sudaderas.php">Sudaderas</a>
+            <a href="ropainterior.php">Ropa Interior</a>
         </div>
 
         
