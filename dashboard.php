@@ -75,9 +75,16 @@ $usuario = $_SESSION['usuario'];
             color: black;
         }
 
+        .titulo {
+            text-align: center;
+            color: #000;
+            font-size: 36px;
+            margin: 40px 0 20px;
+        }
+
         .container {
             max-width: 600px;
-            margin: 80px auto;
+            margin: 0 auto 40px;
             background-image: url('fondo.jpg');
             background-size: cover;
             background-position: center;
@@ -88,7 +95,6 @@ $usuario = $_SESSION['usuario'];
             text-align: center;
             position: relative;
             color: white;
-            flex: 1;
         }
 
         .overlay {
@@ -133,6 +139,9 @@ $usuario = $_SESSION['usuario'];
             <a href="cerrar_sesion.php">Cerrar Sesión</a>
         </div>
     </header>
+
+    
+    <h1 class="titulo">Mario StreetWear</h1>
 
     
     <div class="container">
