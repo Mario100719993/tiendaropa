@@ -107,36 +107,26 @@ $usuario = $_SESSION['usuario'];
             margin-bottom: 30px;
         }
 
-        .panel-container {
-            display: flex;
-            justify-content: space-around;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .panel {
-            background-color: #fafafa;
-            border: 1px solid #ddd;
-            border-radius: 8px;
-            padding: 20px;
-            width: 45%;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-            transition: transform 0.2s ease;
-        }
-
-        .panel:hover {
-            transform: translateY(-5px);
-        }
-
-        .panel h3 {
+        .boton-panel {
+            display: block;
+            width: 100%;
+            padding: 30px;
+            margin: 20px 0;
+            text-decoration: none;
             color: #000;
-            margin-bottom: 15px;
+            background-color: #fff;
+            border: 2px solid #ccc;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
 
-        .opciones li {
-            list-style: none;
-            margin: 8px 0;
-            color: #333;
+        .boton-panel:hover {
+            background-color: #f0f0f0;
+            border-color: #999;
+            transform: translateY(-5px);
         }
 
         footer {
@@ -176,27 +166,9 @@ $usuario = $_SESSION['usuario'];
             Estás en el panel de administración.
         </div>
 
-        <div class="panel-container">
-            <!-- PANEL DE CLIENTES -->
-            <div class="panel">
-                <h3>Gestionar Clientes</h3>
-                <ul class="opciones">
-                    <li>✅ Crear cliente</li>
-                    <li>✏️ Modificar cliente</li>
-                    <li>🗑️ Eliminar cliente</li>
-                </ul>
-            </div>
-
-            <!-- PANEL DE PRODUCTOS -->
-            <div class="panel">
-                <h3>Gestionar Productos</h3>
-                <ul class="opciones">
-                    <li>➕ Añadir producto</li>
-                    <li>✏️ Modificar producto</li>
-                    <li>🗑️ Eliminar producto</li>
-                </ul>
-            </div>
-        </div>
+        <!-- BOTONES DE PANEL -->
+        <a href="gestionclientes.php" class="boton-panel">GESTIONAR CLIENTES</a>
+        <a href="gestionproductos.php" class="boton-panel">GESTIONAR PRODUCTOS</a>
     </div>
 
     <!-- FOOTER -->
