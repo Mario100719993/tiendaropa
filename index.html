@@ -1,1 +1,120 @@
-prueba
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Mario StreetWear</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #000000;
+            color: white;
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 24px;
+        }
+
+        .nav-buttons a {
+            text-decoration: none;
+            color: white;
+            margin-left: 20px;
+            padding: 10px 20px;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            background-color: #111;
+            border: 1px solid white;
+        }
+
+        .nav-buttons a:hover {
+            background-color: #fff;
+            color: black;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background-color: #f4f4f4;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            color: #000;
+        }
+
+        .hero p {
+            font-size: 20px;
+            max-width: 600px;
+            margin: 0 auto 30px;
+        }
+
+        .btn-shop {
+            background-color: #000;
+            color: white;
+            padding: 12px 30px;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 4px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+        }
+
+        .btn-shop:hover {
+            background-color: #333;
+        }
+
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Mario StreetWear</h1>
+        <div class="nav-buttons">
+            <a href="iniciarsesion.html">Iniciar Sesión</a>
+            <a href="registrarse.html">Registrarse</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h2>Bienvenido a Mario StreetWear</h2>
+        <p>Encuentra lo último en moda urbana y accesorios exclusivos. Ropa de calidad con estilo único.</p>
+        <a href="#" class="btn-shop">Ver Colección</a>
+    </section>
+
+    <footer>
+        &copy; 2025 Mario StreetWear. Todos los derechos reservados.
+    </footer>
+
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log("Bienvenido a Mario StreetWear");
+        });
+    </script>
+
+</body>
+</html>
