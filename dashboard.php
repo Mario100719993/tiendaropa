@@ -27,6 +27,10 @@ $usuario = $_SESSION['usuario'];
         body {
             background-color: #f4f4f4;
             line-height: 1.6;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
         }
 
         header {
@@ -74,20 +78,21 @@ $usuario = $_SESSION['usuario'];
         .container {
             max-width: 600px;
             margin: 80px auto;
-            background-image: url('fondo.jpg'); 
-            background-size: cover; 
-            background-position: center; 
-            background-repeat: no-repeat; 
+            background-image: url('fondo.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             padding: 40px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.3);
             text-align: center;
             position: relative;
             color: white;
+            flex: 1;
         }
 
         .overlay {
-            background-color: rgba(0, 0, 0, 0.6); 
+            background-color: rgba(0, 0, 0, 0.6);
             padding: 30px;
             border-radius: 8px;
         }
@@ -100,6 +105,14 @@ $usuario = $_SESSION['usuario'];
             font-size: 18px;
             margin-bottom: 20px;
             color: #eee;
+        }
+
+        footer {
+            background-color: #000000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
         }
     </style>
 </head>
@@ -128,6 +141,11 @@ $usuario = $_SESSION['usuario'];
             <p>Selecciona una categoría arriba para empezar a comprar.</p>
         </div>
     </div>
+
+    
+    <footer>
+        &copy; 2025 Mario StreetWear. Todos los derechos reservados.
+    </footer>
 
 </body>
 </html>
