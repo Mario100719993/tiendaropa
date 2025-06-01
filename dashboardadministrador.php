@@ -14,14 +14,13 @@ if ($_SESSION['rol'] !== 'admin') {
 }
 
 $usuario = $_SESSION['usuario'];
-$rol = $_SESSION['rol'];
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Dashboard Admin - Mario StreetWear</title>
+    <title>Panel de Administración - Mario StreetWear</title>
     <style>
         /* Reset básico */
         * {
@@ -105,7 +104,39 @@ $rol = $_SESSION['rol'];
             padding: 15px;
             border-radius: 5px;
             font-weight: bold;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
+        }
+
+        .panel-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .panel {
+            background-color: #fafafa;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 20px;
+            width: 45%;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+            transition: transform 0.2s ease;
+        }
+
+        .panel:hover {
+            transform: translateY(-5px);
+        }
+
+        .panel h3 {
+            color: #000;
+            margin-bottom: 15px;
+        }
+
+        .opciones li {
+            list-style: none;
+            margin: 8px 0;
+            color: #333;
         }
 
         footer {
@@ -121,7 +152,7 @@ $rol = $_SESSION['rol'];
 
     <!-- HEADER CON NAVEGACIÓN -->
     <header>
-        <!-- Botones de categorías (ejemplo) -->
+        <!-- Botones de categorías -->
         <div class="nav-categorias">
             <a href="camisetas.php">Camisetas</a>
             <a href="pantalones.php">Pantalones</a>
@@ -145,14 +176,27 @@ $rol = $_SESSION['rol'];
             Estás en el panel de administración.
         </div>
 
-        <h2>Opciones disponibles:</h2>
-        <ul style="list-style: none; padding: 0; text-align: left; max-width: 400px; margin: 0 auto;">
-            <li>✅ Gestionar productos</li>
-            <li>✅ Añadir nuevos artículos</li>
-            <li>✅ Eliminar o editar productos</li>
-            <li>✅ Ver lista de usuarios</li>
-            <li>✅ Configurar promociones</li>
-        </ul>
+        <div class="panel-container">
+            <!-- PANEL DE CLIENTES -->
+            <div class="panel">
+                <h3>Gestionar Clientes</h3>
+                <ul class="opciones">
+                    <li>✅ Crear cliente</li>
+                    <li>✏️ Modificar cliente</li>
+                    <li>🗑️ Eliminar cliente</li>
+                </ul>
+            </div>
+
+            <!-- PANEL DE PRODUCTOS -->
+            <div class="panel">
+                <h3>Gestionar Productos</h3>
+                <ul class="opciones">
+                    <li>➕ Añadir producto</li>
+                    <li>✏️ Modificar producto</li>
+                    <li>🗑️ Eliminar producto</li>
+                </ul>
+            </div>
+        </div>
     </div>
 
     <!-- FOOTER -->
