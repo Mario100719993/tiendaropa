@@ -1,11 +1,18 @@
-<?php session_start(); ?>
+<?php
+session_start();
+require 'conexion.php';
+
+// Obtener solo las sudaderas
+$sql = "SELECT Nombre, Precio, Imagen FROM productos WHERE Tipo = 'Sudaderas'";
+$resultado = $conn->query($sql);
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Camisetas - Mario StreetWear</title>
+    <title>Sudaderas - Mario StreetWear</title>
     <style>
-        
+        /* Reset básico */
         * {
             margin: 0;
             padding: 0;
@@ -64,20 +71,50 @@
             color: black;
         }
 
-        .titulo {
+        h2 {
             text-align: center;
             color: #000;
-            font-size: 36px;
-            margin: 40px 0 20px;
+            margin-top: 40px;
         }
 
         .container {
             max-width: 900px;
-            margin: 0 auto 40px;
+            margin: 40px auto;
             background-color: white;
             padding: 30px;
             border-radius: 8px;
             box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .producto-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .producto {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            text-align: center;
+            padding: 15px;
+        }
+
+        .producto img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+        }
+
+        .producto h4 {
+            margin: 10px 0 5px;
+            color: #000;
+        }
+
+        .producto p {
+            color: #555;
+            font-weight: bold;
         }
 
         footer {
@@ -105,12 +142,22 @@
         </div>
     </header>
 
-    <!-- TÍTULO -->
-    <h1 class="titulo">Sudaderas</h1>
+    <h2>Sudaderas</h2>
 
-    <!-- CONTENIDO -->
     <div class="container">
-        <p>Calidad y estilo en nuestras sudaderas. Encuentra tu diseño ideal aquí.</p>
+        <div class="producto-grid">
+            <?php if ($resultado->num_rows > 0): ?>
+                <?php while ($row = $resultado->fetch_assoc()): ?>
+                    <div class="producto">
+                        <img src="<?= !empty($row['Imagen']) ? 'imagenes/' . $row['Imagen'] : 'imagenes/sin_imagen.jpg' ?>" alt="<?= htmlspecialchars($row['Nombre']) ?>">
+                        <h4><?= htmlspecialchars($row['Nombre']) ?></h4>
+                        <p>€<?= number_format($row['Precio'], 2) ?></p>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No hay sudaderas disponibles.</p>
+            <?php endif; ?>
+        </div>
     </div>
 
     <!-- FOOTER -->
