@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <title>Camisetas - Mario StreetWear</title>
     <style>
-        /* Reset básico */
+        
         * {
             margin: 0;
             padding: 0;
@@ -91,7 +91,7 @@
 </head>
 <body>
 
-    <!-- HEADER CON NAVEGACIÓN -->
+    
     <header>
         <div class="nav-categorias">
             <a href="camisetas.php">Camisetas</a>
@@ -105,16 +105,16 @@
         </div>
     </header>
 
-    <!-- TÍTULO -->
+    
     <h1 class="titulo">Camisetas</h1>
 
-    <!-- CONTENIDO -->
+    
     <div class="container">
         <p>En esta sección encontrarás nuestras camisetas más exclusivas. Próximamente añadiremos productos.</p>
-        <!-- Aquí puedes mostrar productos con PHP -->
+        
     </div>
 
-    <!-- FOOTER -->
+    
     <footer>
         &copy; 2025 Mario StreetWear. Todos los derechos reservados.
     </footer>
