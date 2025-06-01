@@ -1,14 +1,13 @@
 <?php
 session_start();
 
-// Si no hay sesión activa, redirigir al login
+
 if (!isset($_SESSION['usuario'])) {
     header("Location: iniciarsesion.html");
     exit();
 }
 
 $usuario = $_SESSION['usuario'];
-$rol = $_SESSION['rol'];
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +16,7 @@ $rol = $_SESSION['rol'];
     <meta charset="UTF-8">
     <title>Dashboard - Mario StreetWear</title>
     <style>
-        /* Reset básico */
+        
         * {
             margin: 0;
             padding: 0;
@@ -90,13 +89,25 @@ $rol = $_SESSION['rol'];
             font-size: 18px;
             margin-bottom: 20px;
         }
+
+        .imagen-container {
+            text-align: center;
+            margin-top: 40px;
+        }
+
+        .imagen-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
     </style>
 </head>
 <body>
 
-    <!-- HEADER CON NAVEGACIÓN -->
+    
     <header>
-        <!-- Botones de categorías -->
+        
         <div class="nav-categorias">
             <a href="#">Camisetas</a>
             <a href="#">Pantalones</a>
@@ -104,17 +115,21 @@ $rol = $_SESSION['rol'];
             <a href="#">Ropa Interior</a>
         </div>
 
-        <!-- Botón de cerrar sesión -->
+        
         <div class="nav-buttons">
             <a href="cerrar_sesion.php">Cerrar Sesión</a>
         </div>
     </header>
 
-    <!-- CONTENIDO DEL DASHBOARD -->
+    
     <div class="container">
         <h2>¡Bienvenido, <?php echo htmlspecialchars($usuario); ?>!</h2>
-        <p>Rol: <strong><?php echo htmlspecialchars($rol); ?></strong></p>
         <p>Selecciona una categoría arriba para empezar a comprar.</p>
+    </div>
+
+    
+    <div class="imagen-container">
+        <img src="fondo.jpg" alt="Fondo de la tienda">
     </div>
 
 </body>
