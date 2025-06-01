@@ -7,7 +7,7 @@ if (!isset($_SESSION['usuario']) || $_SESSION['rol'] !== 'admin') {
     exit();
 }
 
-require 'conexion.php'; // Conexión a la base de datos
+require 'conexion.php';
 
 // Manejar creación de cliente
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_cliente'])) {
@@ -30,12 +30,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['crear_cliente'])) {
 
 // Manejar modificación de cliente
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar_cliente'])) {
-    $idusuario = $conn->real_escape_string($_POST['id_modificar']);
-    $nombre = $conn->real_escape_string($_POST['nombre_modificar']);
-    $apellido = $conn->real_escape_string($_POST['apellido_modificar']);
-    $email = $conn->real_escape_string($_POST['email_modificar']);
-    $usuario = $conn->real_escape_string($_POST['usuario_modificar']);
-    $rol = $conn->real_escape_string($_POST['rol_modificar']);
+    $idusuario = $conn->real_escape_string($_POST['cliente_modificar']);
+    $nombre = $conn->real_escape_string($_POST['nombre']);
+    $apellido = $conn->real_escape_string($_POST['apellido']);
+    $email = $conn->real_escape_string($_POST['email']);
+    $usuario = $conn->real_escape_string($_POST['usuario']);
+    $rol = $conn->real_escape_string($_POST['rol']);
 
     $sql = "UPDATE usuarios SET 
                 Nombre = '$nombre', 
@@ -54,7 +54,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['modificar_cliente']))
 
 // Manejar eliminación de cliente
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_cliente'])) {
-    $id_eliminar = $conn->real_escape_string($_POST['id_eliminar']);
+    $id_eliminar = $conn->real_escape_string($_POST['cliente_eliminar']);
 
     $sql = "DELETE FROM usuarios WHERE idusuario = '$id_eliminar'";
     if ($conn->query($sql) === TRUE) {
@@ -62,6 +62,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_cliente'])) 
     } else {
         echo "<script>alert('Error al eliminar cliente');</script>";
     }
+}
+
+// Obtener todos los clientes para los select
+$sql_clientes = "SELECT idusuario, Nombre, Apellido, Usuario, Email, rol FROM usuarios";
+$result_clientes = $conn->query($sql_clientes);
+$clientes = [];
+
+while ($row = $result_clientes->fetch_assoc()) {
+    $clientes[] = $row;
 }
 ?>
 
@@ -190,6 +199,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_cliente'])) 
             padding: 20px;
             font-size: 14px;
         }
+
+        .datos-cliente {
+            background-color: #f9f9f9;
+            padding: 15px;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+            margin-top: 10px;
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -202,7 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_cliente'])) 
             <a href="sudaderas.php">Sudaderas</a>
             <a href="ropainterior.php">Ropa Interior</a>
         </div>
-
         <div class="nav-buttons">
             <a href="dashboardadministrador.php">Volver al Panel</a>
         </div>
@@ -237,3 +254,131 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['eliminar_cliente'])) 
                     <input type="password" name="contrasena" required>
                 </div>
                 <div class="form-group">
+                    <label for="rol">Rol:</label>
+                    <select name="rol" required>
+                        <option value="cliente">Cliente</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+                <button type="submit" name="crear_cliente" class="boton">Crear Cliente</button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN MODIFICAR CLIENTE -->
+        <div class="seccion">
+            <h3>Modificar Cliente</h3>
+            <form method="post" action="" id="form-modificar">
+                <div class="form-group">
+                    <label for="cliente_modificar">Selecciona un cliente:</label>
+                    <select name="cliente_modificar" id="cliente_modificar" required>
+                        <option value="">-- Selecciona un cliente --</option>
+                        <?php foreach ($clientes as $cliente): ?>
+                            <option value="<?= $cliente['idusuario'] ?>">
+                                <?= htmlspecialchars($cliente['Nombre'] . ' ' . $cliente['Apellido'] . ' (' . $cliente['Usuario'] . ')') ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <!-- Datos del cliente -->
+                <div id="datos_cliente" class="datos-cliente"></div>
+
+                <!-- Campos ocultos que se rellenan dinámicamente -->
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" name="nombre" id="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido">Apellido:</label>
+                    <input type="text" name="apellido" id="apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" name="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="usuario">Usuario:</label>
+                    <input type="text" name="usuario" id="usuario" required>
+                </div>
+                <div class="form-group">
+                    <label for="rol">Rol:</label>
+                    <select name="rol" id="rol" required>
+                        <option value="cliente">Cliente</option>
+                        <option value="admin">Administrador</option>
+                    </select>
+                </div>
+
+                <button type="submit" name="modificar_cliente" class="boton">Modificar Cliente</button>
+            </form>
+        </div>
+
+        <!-- SECCIÓN ELIMINAR CLIENTE -->
+        <div class="seccion">
+            <h3>Eliminar Cliente</h3>
+            <form method="post" action="">
+                <div class="form-group">
+                    <label for="cliente_eliminar">Selecciona un cliente:</label>
+                    <select name="cliente_eliminar" required>
+                        <option value="">-- Selecciona un cliente --</option>
+                        <?php foreach ($clientes as $cliente): ?>
+                            <option value="<?= $cliente['idusuario'] ?>">
+                                <?= htmlspecialchars($cliente['Nombre'] . ' ' . $cliente['Apellido'] . ' (' . $cliente['Usuario'] . ')') ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <button type="submit" name="eliminar_cliente" class="boton">Eliminar Cliente</button>
+            </form>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        &copy; 2025 Mario StreetWear. Todos los derechos reservados.
+    </footer>
+
+    <script>
+        // Script para cargar los datos del cliente seleccionado
+        const clientes = <?= json_encode($clientes) ?>;
+        const select = document.getElementById('cliente_modificar');
+        const datosDiv = document.getElementById('datos_cliente');
+        const nombreInput = document.getElementById('nombre');
+        const apellidoInput = document.getElementById('apellido');
+        const emailInput = document.getElementById('email');
+        const usuarioInput = document.getElementById('usuario');
+        const rolInput = document.getElementById('rol');
+
+        select.addEventListener('change', () => {
+            const id = select.value;
+
+            if (id === "") {
+                datosDiv.style.display = 'none';
+                return;
+            }
+
+            const cliente = clientes.find(c => c.idusuario == id);
+
+            if (cliente) {
+                datosDiv.innerHTML = `
+                    <strong>Datos actuales:</strong><br>
+                    Nombre: ${cliente.Nombre}<br>
+                    Apellido: ${cliente.Apellido}<br>
+                    Email: ${cliente.Email}<br>
+                    Usuario: ${cliente.Usuario}<br>
+                    Rol: ${cliente.rol}
+                `;
+                datosDiv.style.display = 'block';
+
+                // Rellenar campos del formulario
+                nombreInput.value = cliente.Nombre;
+                apellidoInput.value = cliente.Apellido;
+                emailInput.value = cliente.Email;
+                usuarioInput.value = cliente.Usuario;
+                rolInput.value = cliente.rol;
+            }
+        });
+    </script>
+
+</body>
+</html>
